@@ -1,4 +1,4 @@
-function Diabolohigh(theight, initpos, tpos, cpos){
+function diabolohigh(theight, initpos, tpos, cpos){
 	angleMode(DEGREES);
 	this.theight = theight
 	this.initpos = initpos;

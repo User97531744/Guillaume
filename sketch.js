@@ -4,7 +4,7 @@ function setup() {
 	//rate of rotation
 	speed = 8;
 	//framecount to control object creation time
-	increment = -5;
+	increment = -1;
 	//width/string length
 	shuf = 26;
 	shuffleSize = shuf/10;
@@ -140,7 +140,7 @@ function mess(){
 
 function start(){
 	diabs = [];
-	increment = -5;
+	increment = -1;
 	next = 0;
 	styleButton(ss, 50, h - 35, w - 100, 25);
 	y = h - shuffleSize*diameter*3 - 40;

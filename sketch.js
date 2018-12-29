@@ -19,9 +19,13 @@ function setup() {
 	for(i = 0; i < 50; i++){
 		catches[i] = 5;
 	}
+	actuals = "";
 	//navigates siteswap position
 	next = 0;
 	colMode = "Diabolo";
+	strincs = -shuffleSize*diameter*sin(-90)/2;
+	strincrements = 5;
+	positions = "ABCDEFGHIJKLMNOPQRSTUVWXYS"
 	letters = "0123456789abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUBWXYZ";
 	menu = -1;
 	menu2 = -1;
@@ -35,8 +39,8 @@ function setup() {
 	h = height;
 	//coordinates
 	x = w/2;
-	y = h - shuffleSize*diameter*3 - 40;
-	siteswap = "753153455615613";
+	y = h - shuffleSize*diameter*3 - 65;
+	//siteswap = "753153455615613";
 	//siteswap = "55264263353456262625244";
 	//siteswap = "5551753163353455615615615613";
 
@@ -77,7 +81,7 @@ function setup() {
 
 
 	//ss = createInput("321333345");
-	ss = createInput("315315315311333355311333352314352314355");
+	ss = createInput("3AE3AE3AE3AA3CC3EE3AA3CC3EB3AD3EB3AD3EE");
 
 	styleButton(cslider, 20, h/2, w - 40);
 	styleButton(bgslider, 20, h/2, w - 40);
@@ -143,12 +147,18 @@ function start(){
 	increment = -1;
 	next = 0;
 	styleButton(ss, 50, h - 35, w - 100, 25);
-	y = h - shuffleSize*diameter*3 - 40;
-	siteswap = ss.elt.value.toLowerCase();
+	y = h - shuffleSize*diameter*3 - 65;
+	strincs = -shuffleSize*diameter*sin(-90)/2;
+	siteswap = ss.elt.value;
+	actualss = "";
+	for(k = 0; k < siteswap.length; k+=3){
+		abc = siteswap[int((k))];
+		actualss += letters.indexOf(abc)%36;
+	}
 }
 
 function draw(){
-	ss.elt.value = ss.elt.value.toLowerCase();
+	ss.elt.value = ss.elt.value;
 	zoom = diameter*4;
 
 	if(mes == -1 || menu == 1){
@@ -198,9 +208,9 @@ function draw(){
 	ct = siteswap[int((next)%int(siteswap.length))];
 	ct = letters.indexOf(ct)%36;
 	throwpos = siteswap[int((next+1)%int(siteswap.length))];
-	throwpos = letters.indexOf(throwpos)%36;
+	throwpos = positions.indexOf(throwpos)%36;
 	catchpos = siteswap[int((next+2)%int(siteswap.length))];
-	catchpos = letters.indexOf(catchpos)%36;
+	catchpos = positions.indexOf(catchpos)%36;
 	//nt = siteswap[int((next+1)%int(siteswap.length))];
 	//nt = letters.indexOf(nt)%36;
 
@@ -271,6 +281,18 @@ function draw(){
 	translate(-sposx2, -sposy2);
 	increment ++;
 
+	fill(20);
+	textSize(diameter);
+	strokeWeight(0);
+	for(k = 0; k < strincrements; k++){
+		text(positions.charAt(k), x-(strincs)*strincrements/2 + k*strincs, h-50);
+	}
+	fill(50, 100, 255);
+	textAlign(LEFT);
+	textSize(25);
+	text("SITESWAP:  " + actualss, 20, 30);
+	strokeWeight(1);
+	textAlign(CENTER);
 	//  =====DIABOLOS=====
 	//tracking sun progress for sticks and string
 	sun = 0;
@@ -304,12 +326,12 @@ function draw(){
 		//zoom
 	if (keyIsDown(UP_ARROW)) {
 	  diameter+=0.25;
-		y = h - shuffleSize*diameter*3 - 40;
+		y = h - shuffleSize*diameter*3 - 65;
 	}
 	if (keyIsDown(DOWN_ARROW)) {
 		if(diameter>1)
 	  	diameter-=0.25;
-			y = h - shuffleSize*diameter*3 - 40;
+			y = h - shuffleSize*diameter*3 - 65;
 	}
 	textAlign(CENTER);
 	if(menu == 1){
@@ -388,13 +410,14 @@ function keyPressed(){
 
 function scal(event){
 	if (event.velocity > 0) {
-		y =h - shuffleSize*diameter*3-40;
+		y =h - shuffleSize*diameter*3-65;
 	}
 	else{
 		if(diameter>1)
 			diameter-=1;
-			y =h - shuffleSize*diameter*3-40;
-		}
+	}
+	y =h - shuffleSize*diameter*3-65;
+	strincs = -shuffleSize*diameter*sin(-90)/2;
 }
 function dt(event){
 	if(menu == -1){
@@ -413,7 +436,7 @@ function swiped(event) {
 		else {
 			zslider.elt.value = zslider.value()+5;
 		}
-		y =h - shuffleSize*diameter*3-40;
+		y =h - shuffleSize*diameter*3-65;
 	}
 	else if (event.direction == 16) {
 		if(zoom>1)
@@ -426,8 +449,9 @@ function swiped(event) {
 			else {
 				zslider.elt.value = zslider.value()-5;
 			}
-		y =h - shuffleSize*diameter*3-40;
+		y =h - shuffleSize*diameter*3-65;
 	}
+	strincs = -shuffleSize*diameter*sin(-90)/2;
 }
 
 function styleButton(input, xx, yy, wid = 50, fntsz = 23, col = "buttontext", bgcol = "buttonface"){

@@ -10,7 +10,7 @@ function diabolohigh(theight, initpos, tpos, cpos){
 	//size between catch and throw
 	this.gap = this.inc*(this.initpos-this.tpos);
 	//3 is technically where x already sits
-	this.left = x + (this.tpos-3)*this.inc;
+	this.left = x + (this.tpos-2.5)*this.inc;
 	//left side to the middle is half the gap
 	this.x = this.left + this.gap/2;
 	this.speed = speed*0.75;

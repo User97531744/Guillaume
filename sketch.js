@@ -279,7 +279,7 @@ function draw(){
 	if ((increment) % (180/(speed*0.75)) <1){
 		catches[next/3+ct] = catchpos;
 		if(ct != 0){
-			diabs.push(new Diabolohigh(ct, catches[next/3], throwpos, catchpos));
+			diabs.push(new diabolohigh(ct, catches[next/3], throwpos, catchpos));
 		}
 		next += 3;
 	}

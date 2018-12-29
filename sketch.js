@@ -140,7 +140,7 @@ function mess(){
 
 function start(){
 	diabs = [];
-	increment = -1;
+	increment = -5;
 	next = 0;
 	styleButton(ss, 50, h - 35, w - 100, 25);
 	y = h - shuffleSize*diameter*3 - 40;

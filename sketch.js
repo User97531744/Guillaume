@@ -4,7 +4,7 @@ function setup() {
 	//rate of rotation
 	speed = 8;
 	//framecount to control object creation time
-	increment = -1;
+	increment = -5;
 	//width/string length
 	shuf = 26;
 	shuffleSize = shuf/10;
